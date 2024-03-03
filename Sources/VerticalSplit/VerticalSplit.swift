@@ -250,7 +250,7 @@ public struct VerticalSplit<
                     )
                     .frame(height: hideBottom ? nil : topHeight + overscroll / 5 )
                     .transaction(value: hideBottom, { t in
-                        t.animation = didSetInitialSplit ? .smooth(duration: 0.4) : .none
+                        t.animation = didSetInitialSplit ? .smooth(duration: 0.2) : .none
                     })
                     .transition(.offset(y: -topHeight - (partition > 0 ? 300 : 200) ))
                     .zIndex(1)
@@ -274,7 +274,7 @@ public struct VerticalSplit<
                         }
                     )
                     .transaction(value: hideBottom, { t in
-                        t.animation = didSetInitialSplit ? .smooth(duration: 0.4) : .none
+                        t.animation = didSetInitialSplit ? .smooth(duration: 0.2) : .none
                     })
                     .transition(.offset(y: -partition + range + (partition < 0 ? 300 : 200) ))
                     .zIndex(1)
@@ -282,8 +282,8 @@ public struct VerticalSplit<
             }
             // .animation(.smooth(duration: 0.45), value: hideTop)
             // .animation(.smooth(duration: 0.45), value: hideBottom)
-            .animation(.spring(response: 0.4, dampingFraction: 0.7), value: hideTop)
-            .animation(.spring(response: 0.4, dampingFraction: 0.7), value: hideBottom)
+            .animation(.spring(response: 0.2, dampingFraction: 0.7), value: hideTop)
+            .animation(.spring(response: 0.2, dampingFraction: 0.7), value: hideBottom)
 
             .overlay {
                 if currentSpacing != spacing {
@@ -462,7 +462,7 @@ public struct VerticalSplit<
                     .fill(.white.opacity(0.3))
                     .frame(width: 56, height: 5)
                     .transaction({ t in
-                        t.animation = .easeInOut(duration: 0.3)
+                        t.animation = .easeInOut(duration: 0.2)
                     }, body: { $0.scaleEffect(isDragging ? 0.9 : 1) })
                     .blur(radius: isMinimalPill ? 8 : 0)
                     .opacity(isMinimalPill ? 0 : 1)
@@ -497,7 +497,7 @@ public struct VerticalSplit<
         .onChange(of: detent) { _, newValue in
             guard !isAccessoriesPill else { return }
             var t = transaction
-            t.animation = .smooth(duration: 0.5)
+            t.animation = .smooth(duration: 0.2)
             withTransaction(t) {
                 didUpdateSplit(split: detent)
             }
