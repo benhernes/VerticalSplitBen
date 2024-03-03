@@ -116,7 +116,7 @@ public struct VerticalSplit<
                     if hideTop || hideBottom {
                         initialMinimal = true
                         initialTop = hideTop
-                        mediumImpact.impactOccurred(intensity: 0.6)
+                        heavyImpact.impactOccurred(intensity: 0.8)
                     }
                 }
                 
@@ -128,13 +128,13 @@ public struct VerticalSplit<
                     if translation < -cardHeight + lil {
                         if translationBeforeOverscroll == 0 {
                             translationBeforeOverscroll = translation
-                            mediumImpact.impactOccurred(intensity: 0.8)
+                            heavyImpact.impactOccurred(intensity: 0.8)
                         }
                         overscroll = (translation - translationBeforeOverscroll) * 0.75
                     } else if translation > cardHeight - lil {
                         if translationBeforeOverscroll == 0 {
                             translationBeforeOverscroll = translation
-                            mediumImpact.impactOccurred(intensity: 0.8)
+                            heavyImpact.impactOccurred(intensity: 0.8)
                         }
                         overscroll = (translation - translationBeforeOverscroll) * 0.75
                     } else {
@@ -151,7 +151,7 @@ public struct VerticalSplit<
                     
                     if (oldPartition < notchPartition && notchPartition < partition) ||
                         (oldPartition > notchPartition && notchPartition > partition) {
-                        rigidImpact.impactOccurred(intensity: 0.5)
+                        rigidImpact.impactOccurred(intensity: 0.9)
                     }
                 }
             }
@@ -280,8 +280,11 @@ public struct VerticalSplit<
                     .zIndex(1)
                 }
             }
-            .animation(.smooth(duration: 0.45), value: hideTop)
-            .animation(.smooth(duration: 0.45), value: hideBottom)
+            // .animation(.smooth(duration: 0.45), value: hideTop)
+            // .animation(.smooth(duration: 0.45), value: hideBottom)
+            .animation(.spring(response: 0.4, dampingFraction: 0.7), value: hideTop)
+            .animation(.spring(response: 0.4, dampingFraction: 0.7), value: hideBottom)
+
             .overlay {
                 if currentSpacing != spacing {
                     Color.black.opacity(0.4)
