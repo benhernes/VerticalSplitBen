@@ -1,6 +1,8 @@
 # VerticalSplit
 This package is ***heavily*** inspired by the splitscreen impelementation from the [Amie](https://www.amie.so) iOS app. This is my attempt to recreate it
 
+Versioned as VerticalSplitBen 1.1 for refinements to fit use case
+
 ## Examples
 
 
